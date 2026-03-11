@@ -1,108 +1,80 @@
-# README: 基於隨機網格的雙秘密分享系統 (RG-Based 2-Secret Sharing)
 
-## 1. 專案背景與題目
+---
 
-* 
-**專案名稱**：An RG-Based 2-secret sharing scheme with abilities of OR and XOR Decryption 
+# An RG-Based 2-Secret Sharing Scheme with Abilities of OR and XOR Decryption
 
-* 
-**開發環境**：Visual Studio 2022 
+本專案實作了一種基於**隨機網格 (Random Grids, RG)** 的雙秘密分享 (Visual Secret Sharing) 系統 。透過改進學長姊的研究，以**水平橫移 (Horizontal Shift)** 取代旋轉操作，解決了秘密影像必須為正方形的限制 。
 
-* 
-**核心技術**：隨機網格 (Random Grids, RG)、視覺秘密分享 (VSS)
-
-## 2. 研究動機與問題解決
+## 1. 研究動機與目標
 
 * 
-**打破形狀限制**：傳統 VSS 常要求秘密圖像為正方形 。本專案參考相關研究，以 **「水平橫移」** 取代旋轉，成功支援長方形影像（如本實驗採用的 240x200 尺寸） 。
+**視覺密碼原理**：將秘密圖像拆解為 $n$ 個看起來像雜訊的份額 (Shares)，當達到門檻數量堆疊時，秘密影像可直觀重建 。
 
-* **相容多種解密運算**：
+
 * 
-**OR 運算**：模擬傳統投影片堆疊解密，雖然影像會隨 Share 增加而變暗，但無需電子設備 。
+**雙秘密還原**：本研究探討在同一組 Shares 中隱藏兩張秘密影像 ($SA, SB$) 。
+
+
 * 
-**XOR 運算**：透過輕量級設備運算，可獲得對比度更高、亮度不失真的還原影像 。
-
-## 3. 演算法邏輯說明
-
-程式實作了三種加密策略（KK1, KK2, KK3），其共同核心流程如下：
-
-1. 
-**像素處理**：從第一張秘密影像 $SA$ 中隨機選取像素 。
+**多樣化解密**：除了傳統的 **OR 運算 (堆疊)**，本專案亦支援 **XOR 運算**，以避免疊加導致的影像變暗問題 。
 
 
-2. 
-**網格生成**：透過指定演算法產生兩個隨機網格 $G1$ 與 $G2$ 。
+
+## 2. 演算法流程 (Algorithm)
+
+本專案提供 **KK1, KK2, KK3** 三種加密條件 。其核心邏輯如下：
+
+1. 從第一張秘密 $SA$ 中選取像素 。
 
 
-3. **雙秘密嵌入**：
-* 利用 $SB$ (第二秘密) 與 $G1$ 產生 $G2$，並進行 $1/p$ 的水平橫移 。
+2. 透過指定演算法產生網格 $G1, G2$ 。
 
 
-* 利用 $SA$ 與 $G2$ 產生 $G1$，同樣進行 $1/p$ 水平橫移 。
+3. 利用 $SB$ 與 $G1$ 產生 $G2$，並進行 $1/p$ 的水平橫移 (本實驗預設 $p=4$) 。
 
 
-* 重複上述步驟直到影像完整覆蓋 。
-
-4. 
-**參數設定**：本專案預設位移參數 $p=4$ 。
-
-## 4. 執行指南
-
-### 檔案準備
-
-* 請將 **第一秘密圖 (如 NCNU)** 放入 `./pic/` 資料夾。
-* 請將 **第二秘密圖 (如 CSIE)** 放入 `./pic2/` 資料夾。
-
-### 執行選單
-
-1. 
-**KK1**：基礎加密，於 OR 與 XOR 模式下皆有穩定還原表現 。
+4. 利用 $SA$ 與 $G2$ 產生 $G1$，同樣位移 $1/p$，重複至填滿影像 。
 
 
-2. **KK2**：強化黑點機率編碼。
-3. **KK3**：強化白點機率編碼。
-4. **ALL**：一次執行所有演算法並對比數據。
 
-## 5. 輸出結果說明
+## 3. 實驗結果展示 (Experimental Results)
 
-執行後將在 `./s1/kkX/` 資料夾下產出 **8 張圖片** 與 **1 份數據檔**：
+### 3.1 原始影像與加密份額
 
-* **影像類**：
-* `1.png`, `2.png`：加密後的隨機網格 (Shares)。
-* `SA_original.png`, `SB_original.png`：原始對照圖。
-* `SA_OR.png`, `SA_XOR.png`：第一秘密還原圖。
-* `SB_OR.png`, `SB_XOR.png`：位移還原後的第二秘密圖。
+| 第一秘密 (SA) | 第二秘密 (SB) | Share 1 (G1) | Share 2 (G2) |
+| --- | --- | --- | --- |
+|  |  |  |  |
+
+### 3.2 還原影像對比
+
+| 模式 | 還原 SA (NCNU) | 還原 SB (CSIE - 橫移 $1/p$) |
+| --- | --- | --- |
+| **OR 還原** |  |  |
+| **XOR 還原** |  |  |
+
+## 4. 數據分析 (Data Analysis)
+
+程式會自動計算對比度，白色定義為 1 (光透度最高)，黑色為 0 。詳細準確度數據記錄於產出的 `output.txt` ：
+
+* **Accuracy-all**: 整體像素一致率。
+* **Black-hit**: 黑點還原精確度。
+* **White-hit**: 白點還原精確度。
+
+## 5. 使用說明
+
+1. **環境**：Visual Studio 2022 + OpenCV 4.x。
+2. **圖片位置**：
+* 第一秘密：`./pic/`
+* 第二秘密：`./pic2/`
 
 
-* **數據類 (`output.txt`)**：
-* 自動統計影像對比度（白色定義為 1，黑色為 0） 。
+3. **執行**：啟動程式後可選擇執行 KK1、KK2 或 KK3 演算法。
+
+## 6. 參考文獻
+
+* CHANG, Joy Jo-Yi, et al. "Two-image encryption by random grids." 2010 IEEE 。
 
 
-* 包含 `All-Accuracy`、`Black-Hit` 與 `White-Hit` 之精確度分析 。
 
-## 6. 實驗結果展示 (Experimental Results)
+---
 
-本專案透過水平橫移 (Horizontal Shift) 技術，在同一組 Shares 中隱藏了兩張秘密影像。以下為執行結果：
-
-### 原始秘密影像 (Original Secrets)
-| 第一秘密 (SA) | 第二秘密 (SB) |
-| :---: | :---: |
-| ![SA_original](./s1/kk1/SA_original.png) | ![SB_original](./s1/kk1/SB_original.png) |
-
-### 加密後的網格 (Random Grid Shares)
-| Share 1 (G1) | Share 2 (G2) |
-| :---: | :---: |
-| ![G1](./s1/kk1/1.png) | ![G2](./s1/kk1/2.png) |
-
-### 還原影像 (Reconstructed Images)
-使用 **XOR 運算** 可獲得較佳的對比度與光透度表現：
-
-| 還原 SA (XOR) | 還原 SB (XOR - 位移 1/p) |
-| :---: | :---: |
-| ![SA_XOR](./s1/kk1/SA_XOR.png) | ![SB_XOR](./s1/kk1/SB_XOR.png) |
-
-> **註**：白色定義為光透度 1，黑色為 0。當兩張投影片以 OR 疊加時影像會變暗，而 XOR 運算則能有效避免此問題 [cite: 8, 17, 18]。
-
-## 7. 參考文獻
-
-* CHANG, Joy Jo-Yi, et al. "Two-image encryption by random grids." IEEE, 2010 。
