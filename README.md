@@ -80,6 +80,29 @@
 
 * 包含 `All-Accuracy`、`Black-Hit` 與 `White-Hit` 之精確度分析 。
 
-## 6. 參考文獻
+## 6. 實驗結果展示 (Experimental Results)
+
+[cite_start]本專案透過水平橫移 (Horizontal Shift) 技術，在同一組 Shares 中隱藏了兩張秘密影像 [cite: 7, 13]。以下為執行結果：
+
+### 原始秘密影像 (Original Secrets)
+| 第一秘密 (SA) | 第二秘密 (SB) |
+| :---: | :---: |
+| ![SA_original](./s1/kk1/SA_original.png) | ![SB_original](./s1/kk1/SB_original.png) |
+
+### 加密後的網格 (Random Grid Shares)
+| Share 1 (G1) | Share 2 (G2) |
+| :---: | :---: |
+| ![G1](./s1/kk1/1.png) | ![G2](./s1/kk1/2.png) |
+
+### 還原影像 (Reconstructed Images)
+[cite_start]使用 **XOR 運算** 可獲得較佳的對比度與光透度表現 [cite: 8, 20]：
+
+| 還原 SA (XOR) | 還原 SB (XOR - 位移 1/p) |
+| :---: | :---: |
+| ![SA_XOR](./s1/kk1/SA_XOR.png) | ![SB_XOR](./s1/kk1/SB_XOR.png) |
+
+> [cite_start]**註**：白色定義為光透度 1，黑色為 0。當兩張投影片以 OR 疊加時影像會變暗，而 XOR 運算則能有效避免此問題 [cite: 8, 17, 18]。
+
+## 7. 參考文獻
 
 * CHANG, Joy Jo-Yi, et al. "Two-image encryption by random grids." IEEE, 2010 。
