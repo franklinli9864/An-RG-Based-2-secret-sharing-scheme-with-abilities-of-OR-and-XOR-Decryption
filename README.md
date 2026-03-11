@@ -1,22 +1,17 @@
-
 ---
-
 # An RG-Based 2-Secret Sharing Scheme with Abilities of OR and XOR Decryption
 
 本專案實作了一種基於**隨機網格 (Random Grids, RG)** 的雙秘密分享 (Visual Secret Sharing) 系統 。透過改進學長姊的研究，以**水平橫移 (Horizontal Shift)** 取代旋轉操作，解決了秘密影像必須為正方形的限制 。
 
 ## 1. 研究動機與目標
 
-* 
-**視覺密碼原理**：將秘密圖像拆解為 $n$ 個看起來像雜訊的份額 (Shares)，當達到門檻數量堆疊時，秘密影像可直觀重建 。
+* **視覺密碼原理**：將秘密圖像拆解為 $n$ 個看起來像雜訊的份額 (Shares)，當達到門檻數量堆疊時，秘密影像可直觀重建 。
 
 
-* 
-**雙秘密還原**：本研究探討在同一組 Shares 中隱藏兩張秘密影像 ($SA, SB$) 。
+* **雙秘密還原**：本研究探討在同一組 Shares 中隱藏兩張秘密影像 ($SA, SB$) 。
 
 
-* 
-**多樣化解密**：除了傳統的 **OR 運算 (堆疊)**，本專案亦支援 **XOR 運算**，以避免疊加導致的影像變暗問題 。
+* **多樣化解密**：除了傳統的 **OR 運算 (堆疊)**，本專案亦支援 **XOR 運算**，以避免疊加導致的影像變暗問題 。
 
 
 
@@ -74,7 +69,4 @@
 
 * CHANG, Joy Jo-Yi, et al. "Two-image encryption by random grids." 2010 IEEE 。
 
-
-
 ---
-
