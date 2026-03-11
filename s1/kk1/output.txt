@@ -1,0 +1,12 @@
+OR-all-SA : 0.78235
+OR-black-all-SA : 1.00000
+OR-white-all-SA : 0.50411
+OR-all-SB : 0.69292
+OR-black-all-SB : 0.98324
+OR-white-all-SB : 0.47492
+XOR-all-SA : 1.00000
+XOR-black-all-SA : 1.00000
+XOR-white-all-SA : 1.00000
+XOR-all-SB : 0.95208
+XOR-black-all-SB : 0.96497
+XOR-white-all-SB : 0.94240
