@@ -30,7 +30,7 @@
 | **XOR 還原** | ![SA_XOR](./s1/kk1/SA_XOR.png) | ![SB_XOR](./s1/kk1/SB_XOR.png) |
 
 ## 4. 數據量化分析 (Data Analysis) 
-程式會自動計算對比度，白色定義為 1 (光透度最高)，黑色為 0 [cite: 17, 18][cite_start]。詳細數據記錄於產出的 `output.txt` ：
+程式會自動計算對比度，白色定義為 1 (光透度最高)，黑色為 0 。詳細數據記錄於產出的 `output.txt` ：
 * **All-Accuracy**: 整體像素一致率。
 * **Black-hit**: 黑點還原精確度。
 * **White-hit**: 白點還原精確度。
