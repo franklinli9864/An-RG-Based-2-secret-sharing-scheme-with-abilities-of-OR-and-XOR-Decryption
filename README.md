@@ -29,8 +29,8 @@
 | **OR 還原** | ![SA_OR](./s1/kk1/SA_OR.png) | ![SB_OR](./s1/kk1/SB_OR.png) |
 | **XOR 還原** | ![SA_XOR](./s1/kk1/SA_XOR.png) | ![SB_XOR](./s1/kk1/SB_XOR.png) |
 
-## [cite_start]4. 數據量化分析 (Data Analysis) [cite: 2]
-[cite_start]程式會自動計算對比度，白色定義為 1 (光透度最高)，黑色為 0 [cite: 17, 18][cite_start]。詳細數據記錄於產出的 `output.txt` [cite: 2]：
+## 4. 數據量化分析 (Data Analysis) 
+程式會自動計算對比度，白色定義為 1 (光透度最高)，黑色為 0 [cite: 17, 18][cite_start]。詳細數據記錄於產出的 `output.txt` ：
 * **All-Accuracy**: 整體像素一致率。
 * **Black-hit**: 黑點還原精確度。
 * **White-hit**: 白點還原精確度。
@@ -40,7 +40,7 @@
 2. **圖片存放**：
    - 第一秘密放置於 `./pic/`。
    - 第二秘密放置於 `./pic2/`。
-3. [cite_start]**執行流程**：啟動程式後依照選單輸入演算法編號 (1-4) 以及位移參數 `num` (建議設為 4) [cite: 13, 20]。
+3. **執行流程**：啟動程式後依照選單輸入演算法編號 (1-4) 以及位移參數 `num` (建議設為 4) 。
 
 ## 6. 參考文獻
-* CHANG, Joy Jo-Yi, et al. "Two-image encryption by random grids." [cite_start]2010 IEEE [cite: 22, 23]。
+* CHANG, Joy Jo-Yi, et al. "Two-image encryption by random grids." 2010 IEEE 。
